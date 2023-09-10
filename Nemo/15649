@@ -1,0 +1,42 @@
+#include<iostream> 
+#include<stack>
+#include<string.h>
+#include<vector>
+
+using namespace std;
+
+int arr[9];
+bool check[9];
+int n, m;
+
+void func(int c)
+{
+	if (c == m)
+	{
+		for (int i = 0; i < m; ++i)
+			cout << arr[i] << ' ';
+		cout << '\n';
+		return;
+	}
+	for (int i = 1; i <= n; ++i)
+	{
+		if (!check[i])
+		{
+			arr[c] = i;
+			check[i] = true;
+			func(c + 1);
+			check[i] = false;
+		}
+	}
+
+}
+
+int main()
+{
+	std::fill_n(arr, 8, 0);
+	std::fill_n(check, 8, false);
+
+	cin >> n >> m;
+	func(0);
+	return 0;
+}
